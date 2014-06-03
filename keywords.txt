@@ -1,0 +1,11 @@
+ledRings	KEYWORD1
+updateRings	KEYWORD2
+allRingsOff	KEYWORD2
+setRingState	KEYWORD2
+setRingLed	KEYWORD2
+setRingBottomLed	KEYWORD2
+ringAllArcLedsOn	KEYWORD2
+ringAllArcLedsOff	KEYWORD2
+blinkAllRings	KEYWORD2
+blinkRing	KEYWORD2
+ledRingInterrupt	KEYWORD2
