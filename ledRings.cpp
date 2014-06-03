@@ -4,7 +4,6 @@
   Version .5 beta: initial release
   Released into the public domain.
 */
-#include "WProgram.h"
 #include "ledRings.h"
 
 ledRings::ledRings(byte sdiPin, byte clkPin, byte lePin, byte oePin, byte numRings) {
@@ -108,6 +107,7 @@ void ledRings::interrupt() {
 /*************************| ISR Timer Functions |*************************/
 extern ledRings ring;
 
+#if defined(__AVR__)
 ISR(TIMER2_COMPA_vect) {
   ring.interrupt();
 }
@@ -128,4 +128,26 @@ void startISR(){  // Starts the ISR
 void stopISR(){    // Stops the ISR
   TIMSK2&=~(1<<OCIE2A);                  // disable interrupts
 }
+
+#elif defined(__arm__) && defined(TEENSYDUINO) // Teensy 3.x
+
+static IntervalTimer itimer;
+
+void interruptFunction(void) {
+  ring.interrupt();
+}
+
+void initInterrupt() {
+}
+
+void startISR() {
+  itimer.begin(interruptFunction, 1952.0);
+}
+
+void stopISR() {
+  itimer.end();
+}
+
+#endif
+
 /***********************| End ISR Timer Functions |***********************/

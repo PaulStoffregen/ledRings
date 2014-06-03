@@ -7,7 +7,7 @@
 
 #ifndef ledRings_h
 #define ledRings_h
-#include "WProgram.h"
+#include "Arduino.h"
 
 class ledRings {
   public:
