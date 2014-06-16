@@ -138,6 +138,7 @@ void interruptFunction(void) {
 }
 
 void initInterrupt() {
+  startISR();
 }
 
 void startISR() {
